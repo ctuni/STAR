@@ -1,0 +1,11 @@
+#Reference index creation for Human Genome 200 bp
+
+REFGENE=/samprojects/Dades_affymetrix/RNA_seq/Ref_Genomes_fa
+ANNOTGENE=/samprojects/Dades_affymetrix/RNA_seq/Annot_files_GTF
+GNMIDX=/samprojects/Dades_affymetrix/RNA_seq/Index_Genomes_STAR/Idx_Gencode_hg38_readlength200
+
+##########################################################################################################
+################################Index Creation############################################################
+#We can re-use the index of the reference genome from other projects, but the parameter --sjdbOverhang is recommended to be ReadLength-1. For accuracy we could create a Index for each ReadLength.
+
+STAR --runThreadN 8 --runMode genomeGenerate --genomeDir $GNMIDX --genomeFastaFiles $REFGENE/GRCh38.v29.primary_assembly.genome.fa --sjdbGTFfile $ANNOTGENE/gencode.v29.primary_assembly.annotation.gtf --sjdbOverhang 199

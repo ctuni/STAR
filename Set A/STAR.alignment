@@ -3,26 +3,47 @@
 ANNOTGENE=/samprojects/Dades_affymetrix/RNA_seq/Annot_files_GTF
 GNMIDX=/samprojects/Dades_affymetrix/RNA_seq/Index_Genomes_STAR/Idx_Gencode17_mm10_readlength240
 PROJECT=/samscratch/Test_Cris_mouse/TFG/RawData/SetA
-#OUTDIR=/samscratch/Test_Cris_mouse/TFG/STAR/SetA/BAM_files0
+OUTDIR=/samscratch/Test_Cris_mouse/TFG/STAR/SetA/BAM_files0
 R1=_1.fastq
 R2=_2.fastq
 
-#cat $PROJECT/Targets_abs|while read line; do name=`basename $line`; STAR --runThreadN 10 --genomeDir $GNMIDX --readFilesIn $line$R1 $line$R2 --outFileNamePrefix $OUTDIR/$name --outFilterMismatchNmax 10 --seedSearchStartLmax 50 --alignSJoverhangMin 5 --outFilterMatchNminOverLread 0.66 --outFilterScoreMinOverLread 0.66 --sjdbGTFfile $ANNOTGENE/gencode.vM17.primary_assembly.annotation.gtf; done
-#Inspeccionem el resultat dels alineaments
-#for i in $OUTDIR/*.final.out; do basename $i >> $OUTDIR/TotalCounts_Alignment; grep "Number of input reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Uniquely mapped reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Average mapped length" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "reads mapped to too many loci" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too many mismatches" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too short" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "other" "$i" >> $OUTDIR/TotalCounts_Alignment; done
+cat $PROJECT/Targets_abs|while read line; do name=`basename $line`; STAR --runThreadN 10 --genomeDir $GNMIDX --readFilesIn $line$R1 $line$R2 --outFileNamePrefix $OUTDIR/$name --outFilterMismatchNmax 10 --seedSearchStartLmax 50 --alignSJoverhangMin 5 --outFilterMatchNminOverLread 0.66 --outFilterScoreMinOverLread 0.66 --sjdbGTFfile $ANNOTGENE/gencode.vM17.primary_assembly.annotation.gtf; done
+
+for i in $OUTDIR/*.final.out; do basename $i >> $OUTDIR/TotalCounts_Alignment; grep "Number of input reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Uniquely mapped reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Average mapped length" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "reads mapped to too many loci" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too many mismatches" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too short" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "other" "$i" >> $OUTDIR/TotalCounts_Alignment; done
+
+rm -f $OUTDIR/SRR327045.fastqAligned.sortedByCoord.out.bam
+rm -f $OUTDIR/SRR327047.fastqAligned.sortedByCoord.out.bam
+rm -f $OUTDIR/SRR342457.fastqAligned.sortedByCoord.out.bam
+rm -f $OUTDIR/SRR342458.fastqAligned.sortedByCoord.out.bam
+
+rm -f $OUTDIR/SRR327045Aligned.out.sam
+rm -f $OUTDIR/SRR327047Aligned.out.sam
+rm -f $OUTDIR/SRR342457Aligned.out.sam
+rm -f $OUTDIR/SRR342458Aligned.out.sam
 
 
 #Test 1
-#OUTDIR=/samscratch/Test_Cris_mouse/TFG/STAR/SetA/BAM_files1
-#cat $PROJECT/Targets_abs|while read line; do name=`basename $line`; STAR --runThreadN 10 --genomeDir $GNMIDX --readFilesIn $line$R1 $line$R2 --outFileNamePrefix $OUTDIR/$name --outFilterMismatchNmax 33 --seedSearchStartLmax 50 --alignSJoverhangMin 5 --outFilterMatchNminOverLread 0.66 --outFilterScoreMinOverLread 0.66 --sjdbGTFfile $ANNOTGENE/gencode.vM17.primary_assembly.annotation.gtf; done
-#Inspeccionem el resultat dels alineaments
-#for i in $OUTDIR/*.final.out; do basename $i >> $OUTDIR/TotalCounts_Alignment; grep "Number of input reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Uniquely mapped reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Average mapped length" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "reads mapped to too many loci" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too many mismatches" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too short" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "other" "$i" >> $OUTDIR/TotalCounts_Alignment; done
+OUTDIR=/samscratch/Test_Cris_mouse/TFG/STAR/SetA/BAM_files1
+cat $PROJECT/Targets_abs|while read line; do name=`basename $line`; STAR --runThreadN 10 --genomeDir $GNMIDX --readFilesIn $line$R1 $line$R2 --outFileNamePrefix $OUTDIR/$name --outFilterMismatchNmax 33 --seedSearchStartLmax 50 --alignSJoverhangMin 5 --outFilterMatchNminOverLread 0.66 --outFilterScoreMinOverLread 0.66 --sjdbGTFfile $ANNOTGENE/gencode.vM17.primary_assembly.annotation.gtf; done
+
+for i in $OUTDIR/*.final.out; do basename $i >> $OUTDIR/TotalCounts_Alignment; grep "Number of input reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Uniquely mapped reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Average mapped length" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "reads mapped to too many loci" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too many mismatches" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too short" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "other" "$i" >> $OUTDIR/TotalCounts_Alignment; done
+
+
+rm -f $OUTDIR/SRR327045.fastqAligned.sortedByCoord.out.bam
+rm -f $OUTDIR/SRR327047.fastqAligned.sortedByCoord.out.bam
+rm -f $OUTDIR/SRR342457.fastqAligned.sortedByCoord.out.bam
+rm -f $OUTDIR/SRR342458.fastqAligned.sortedByCoord.out.bam
+
+rm -f $OUTDIR/SRR327045Aligned.out.sam
+rm -f $OUTDIR/SRR327047Aligned.out.sam
+rm -f $OUTDIR/SRR342457Aligned.out.sam
+rm -f $OUTDIR/SRR342458Aligned.out.sam
 
 
 #Test 2
 OUTDIR=/samscratch/Test_Cris_mouse/TFG/STAR/SetA/BAM_files2
 cat $PROJECT/Targets_abs|while read line; do name=`basename $line`; STAR --runThreadN 10 --genomeDir $GNMIDX --readFilesIn $line$R1 $line$R2 --outFileNamePrefix $OUTDIR/$name --outFilterMismatchNmax 10 --seedSearchStartLmax 0.3 --alignSJoverhangMin 5 --outFilterMatchNminOverLread 0.66 --outFilterScoreMinOverLread 0.66 --sjdbGTFfile $ANNOTGENE/gencode.vM17.primary_assembly.annotation.gtf; done
-#Inspeccionem el resultat dels alineaments
+
 for i in $OUTDIR/*.final.out; do basename $i >> $OUTDIR/TotalCounts_Alignment; grep "Number of input reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Uniquely mapped reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Average mapped length" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "reads mapped to too many loci" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too many mismatches" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too short" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "other" "$i" >> $OUTDIR/TotalCounts_Alignment; done
 
 rm -f $OUTDIR/SRR327045.fastqAligned.sortedByCoord.out.bam
@@ -36,45 +57,65 @@ rm -f $OUTDIR/SRR342457Aligned.out.sam
 rm -f $OUTDIR/SRR342458Aligned.out.sam
 
 #Test 3
-#OUTDIR=/samscratch/Test_Cris_mouse/TFG/STAR/SetA/BAM_files3
-#cat $PROJECT/Targets_abs|while read line; do name=`basename $line`; STAR --runThreadN 12 --genomeDir $GNMIDX --readFilesIn $line$R1 $line$R2 --outFileNamePrefix $OUTDIR/$name --outFilterMismatchNmax 10 --seedSearchStartLmax 50 --alignSJoverhangMin 15 --outFilterMatchNminOverLread 0.66 --outFilterScoreMinOverLread 0.66 --sjdbGTFfile $ANNOTGENE/gencode.vM17.primary_assembly.annotation.gtf; done
-#Inspeccionem el resultat dels alineaments
-#for i in $OUTDIR/*.final.out; do basename $i >> $OUTDIR/TotalCounts_Alignment; grep "Number of input reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Uniquely mapped reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Average mapped length" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "reads mapped to too many loci" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too many mismatches" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too short" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "other" "$i" >> $OUTDIR/TotalCounts_Alignment; done
+OUTDIR=/samscratch/Test_Cris_mouse/TFG/STAR/SetA/BAM_files3
+cat $PROJECT/Targets_abs|while read line; do name=`basename $line`; STAR --runThreadN 12 --genomeDir $GNMIDX --readFilesIn $line$R1 $line$R2 --outFileNamePrefix $OUTDIR/$name --outFilterMismatchNmax 10 --seedSearchStartLmax 50 --alignSJoverhangMin 15 --outFilterMatchNminOverLread 0.66 --outFilterScoreMinOverLread 0.66 --sjdbGTFfile $ANNOTGENE/gencode.vM17.primary_assembly.annotation.gtf; done
 
-#rm -f $OUTDIR/SRR327045.fastqAligned.sortedByCoord.out.bam
-#rm -f $OUTDIR/SRR327047.fastqAligned.sortedByCoord.out.bam
-#rm -f $OUTDIR/SRR342457.fastqAligned.sortedByCoord.out.bam
-#rm -f $OUTDIR/SRR342458.fastqAligned.sortedByCoord.out.bam
+for i in $OUTDIR/*.final.out; do basename $i >> $OUTDIR/TotalCounts_Alignment; grep "Number of input reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Uniquely mapped reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Average mapped length" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "reads mapped to too many loci" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too many mismatches" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too short" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "other" "$i" >> $OUTDIR/TotalCounts_Alignment; done
+
+rm -f $OUTDIR/SRR327045.fastqAligned.sortedByCoord.out.bam
+rm -f $OUTDIR/SRR327047.fastqAligned.sortedByCoord.out.bam
+rm -f $OUTDIR/SRR342457.fastqAligned.sortedByCoord.out.bam
+rm -f $OUTDIR/SRR342458.fastqAligned.sortedByCoord.out.bam
+
+rm -f $OUTDIR/SRR327045Aligned.out.sam
+rm -f $OUTDIR/SRR327047Aligned.out.sam
+rm -f $OUTDIR/SRR342457Aligned.out.sam
+rm -f $OUTDIR/SRR342458Aligned.out.sam
 
 #Test 4
-#OUTDIR=/samscratch/Test_Cris_mouse/TFG/STAR/SetA/BAM_files4
-#cat $PROJECT/Targets_abs|while read line; do name=`basename $line`; STAR --runThreadN 10 --genomeDir $GNMIDX --readFilesIn $line$R1 $line$R2 --outFileNamePrefix $OUTDIR/$name --outFilterMismatchNmax 10 --seedSearchStartLmax 50 --alignSJoverhangMin 5 --outFilterMatchNminOverLread 0 --outFilterScoreMinOverLread 0.66 --sjdbGTFfile $ANNOTGENE/gencode.vM17.primary_assembly.annotation.gtf; done
-#Inspeccionem el resultat dels alineaments
-#for i in $OUTDIR/*.final.out; do basename $i >> $OUTDIR/TotalCounts_Alignment; grep "Number of input reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Uniquely mapped reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Average mapped length" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "reads mapped to too many loci" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too many mismatches" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too short" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "other" "$i" >> $OUTDIR/TotalCounts_Alignment; done
+OUTDIR=/samscratch/Test_Cris_mouse/TFG/STAR/SetA/BAM_files4
+cat $PROJECT/Targets_abs|while read line; do name=`basename $line`; STAR --runThreadN 10 --genomeDir $GNMIDX --readFilesIn $line$R1 $line$R2 --outFileNamePrefix $OUTDIR/$name --outFilterMismatchNmax 10 --seedSearchStartLmax 50 --alignSJoverhangMin 5 --outFilterMatchNminOverLread 0 --outFilterScoreMinOverLread 0.66 --sjdbGTFfile $ANNOTGENE/gencode.vM17.primary_assembly.annotation.gtf; done
 
-#rm -f $OUTDIR/SRR327045.fastqAligned.sortedByCoord.out.bam
-#rm -f $OUTDIR/SRR327047.fastqAligned.sortedByCoord.out.bam
-#rm -f $OUTDIR/SRR342457.fastqAligned.sortedByCoord.out.bam
-#rm -f $OUTDIR/SRR342458.fastqAligned.sortedByCoord.out.bam
+for i in $OUTDIR/*.final.out; do basename $i >> $OUTDIR/TotalCounts_Alignment; grep "Number of input reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Uniquely mapped reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Average mapped length" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "reads mapped to too many loci" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too many mismatches" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too short" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "other" "$i" >> $OUTDIR/TotalCounts_Alignment; done
+
+rm -f $OUTDIR/SRR327045.fastqAligned.sortedByCoord.out.bam
+rm -f $OUTDIR/SRR327047.fastqAligned.sortedByCoord.out.bam
+rm -f $OUTDIR/SRR342457.fastqAligned.sortedByCoord.out.bam
+rm -f $OUTDIR/SRR342458.fastqAligned.sortedByCoord.out.bam
+
+rm -f $OUTDIR/SRR327045Aligned.out.sam
+rm -f $OUTDIR/SRR327047Aligned.out.sam
+rm -f $OUTDIR/SRR342457Aligned.out.sam
+rm -f $OUTDIR/SRR342458Aligned.out.sam
 
 #Test 5
-#OUTDIR=/samscratch/Test_Cris_mouse/TFG/STAR/SetA/BAM_files5
-#cat $PROJECT/Targets_abs|while read line; do name=`basename $line`; STAR --runThreadN 10 --genomeDir $GNMIDX --readFilesIn $line$R1 $line$R2 --outFileNamePrefix $OUTDIR/$name --outFilterMismatchNmax 10 --seedSearchStartLmax 50 --alignSJoverhangMin 5 --outFilterMatchNminOverLread 0.66 --outFilterScoreMinOverLread 0.3 --sjdbGTFfile $ANNOTGENE/gencode.vM17.primary_assembly.annotation.gtf; done
-#Inspeccionem el resultat dels alineaments
-#for i in $OUTDIR/*.final.out; do basename $i >> $OUTDIR/TotalCounts_Alignment; grep "Number of input reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Uniquely mapped reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Average mapped length" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "reads mapped to too many loci" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too many mismatches" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too short" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "other" "$i" >> $OUTDIR/TotalCounts_Alignment; done
+OUTDIR=/samscratch/Test_Cris_mouse/TFG/STAR/SetA/BAM_files5
+cat $PROJECT/Targets_abs|while read line; do name=`basename $line`; STAR --runThreadN 10 --genomeDir $GNMIDX --readFilesIn $line$R1 $line$R2 --outFileNamePrefix $OUTDIR/$name --outFilterMismatchNmax 10 --seedSearchStartLmax 50 --alignSJoverhangMin 5 --outFilterMatchNminOverLread 0.66 --outFilterScoreMinOverLread 0.3 --sjdbGTFfile $ANNOTGENE/gencode.vM17.primary_assembly.annotation.gtf; done
 
-#rm -f $OUTDIR/SRR327045.fastqAligned.sortedByCoord.out.bam
-#rm -f $OUTDIR/SRR327047.fastqAligned.sortedByCoord.out.bam
-#rm -f $OUTDIR/SRR342457.fastqAligned.sortedByCoord.out.bam
-#rm -f $OUTDIR/SRR342458.fastqAligned.sortedByCoord.out.bam
+for i in $OUTDIR/*.final.out; do basename $i >> $OUTDIR/TotalCounts_Alignment; grep "Number of input reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Uniquely mapped reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Average mapped length" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "reads mapped to too many loci" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too many mismatches" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too short" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "other" "$i" >> $OUTDIR/TotalCounts_Alignment; done
+
+rm -f $OUTDIR/SRR327045.fastqAligned.sortedByCoord.out.bam
+rm -f $OUTDIR/SRR327047.fastqAligned.sortedByCoord.out.bam
+rm -f $OUTDIR/SRR342457.fastqAligned.sortedByCoord.out.bam
+rm -f $OUTDIR/SRR342458.fastqAligned.sortedByCoord.out.bam
+
+rm -f $OUTDIR/SRR327045Aligned.out.sam
+rm -f $OUTDIR/SRR327047Aligned.out.sam
+rm -f $OUTDIR/SRR342457Aligned.out.sam
+rm -f $OUTDIR/SRR342458Aligned.out.sam
 
 #Test 6
-#OUTDIR=/samscratch/Test_Cris_mouse/TFG/STAR/SetA/BAM_files6
-#cat $PROJECT/Targets_abs|while read line; do name=`basename $line`; STAR --runThreadN 10 --genomeDir $GNMIDX --readFilesIn $line$R1 $line$R2 --outFileNamePrefix $OUTDIR/$name --outFilterMismatchNmax 33 --seedSearchStartLmax 0.3 --alignSJoverhangMin 15 --outFilterMatchNminOverLread 0 --outFilterScoreMinOverLread 0.3 --sjdbGTFfile $ANNOTGENE/gencode.vM17.primary_assembly.annotation.gtf; done
-#Inspeccionem el resultat dels alineaments
-#for i in $OUTDIR/*.final.out; do basename $i >> $OUTDIR/TotalCounts_Alignment; grep "Number of input reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Uniquely mapped reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Average mapped length" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "reads mapped to too many loci" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too many mismatches" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too short" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "other" "$i" >> $OUTDIR/TotalCounts_Alignment; done
+OUTDIR=/samscratch/Test_Cris_mouse/TFG/STAR/SetA/BAM_files6
+cat $PROJECT/Targets_abs|while read line; do name=`basename $line`; STAR --runThreadN 10 --genomeDir $GNMIDX --readFilesIn $line$R1 $line$R2 --outFileNamePrefix $OUTDIR/$name --outFilterMismatchNmax 33 --seedSearchStartLmax 0.3 --alignSJoverhangMin 15 --outFilterMatchNminOverLread 0 --outFilterScoreMinOverLread 0.3 --sjdbGTFfile $ANNOTGENE/gencode.vM17.primary_assembly.annotation.gtf; done
+
+for i in $OUTDIR/*.final.out; do basename $i >> $OUTDIR/TotalCounts_Alignment; grep "Number of input reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Uniquely mapped reads" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "Average mapped length" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "reads mapped to too many loci" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too many mismatches" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "too short" "$i" >> $OUTDIR/TotalCounts_Alignment; grep "other" "$i" >> $OUTDIR/TotalCounts_Alignment; done
 
 #rm -f SRR327045.fastqAligned.sortedByCoord.out.bam
 #rm -f SRR327047.fastqAligned.sortedByCoord.out.bam
 #rm -f SRR342457.fastqAligned.sortedByCoord.out.bam
 #rm -f SRR342458.fastqAligned.sortedByCoord.out.bam
+
+rm -f $OUTDIR/SRR327045Aligned.out.sam
+rm -f $OUTDIR/SRR327047Aligned.out.sam
+rm -f $OUTDIR/SRR342457Aligned.out.sam
+rm -f $OUTDIR/SRR342458Aligned.out.sam
